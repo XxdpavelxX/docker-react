@@ -1,3 +1,6 @@
+* Note: Will need to reactivate docker-react elastic beanstalk application in AWS for travis build to deploy properly. 
+see https://www.udemy.com/docker-and-kubernetes-the-complete-guide/learn/v4/t/lecture/11437138?start=15 for more details.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
