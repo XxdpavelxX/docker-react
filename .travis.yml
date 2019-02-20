@@ -12,4 +12,5 @@ before_script:
 
 script:
   - ls -al ~/.ssh
+  - echo test
   
