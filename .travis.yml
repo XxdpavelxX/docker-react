@@ -2,20 +2,13 @@ sudo: required
 services:
   - docker
 
-script:
-  - cd ~/.ssh
-  - ls -al
+before_script:
+  - echo -e $sandbox_pavel > ~/.ssh/sandbox_pavel
+  - chmod 600 ~/.ssh/*
+  - chmod 644 ~/.ssh/config
+  - eval `ssh-agent -s`
+  - ssh-add ~/.ssh/sandbox_pavel
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-1"
-  name: "docker-react"
-  env: "DockerReact-env"
-  bucket-name: "elasticbeanstalk-us-east-1-521080567810"
-  bucket_path: "docker-react"
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: "$AWS_SECRET_KEY"
+script:
+  - ls -al ~/.ssh
   
