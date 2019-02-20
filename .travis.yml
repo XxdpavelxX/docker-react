@@ -3,11 +3,12 @@ services:
   - docker
 
 before_script:
-  - echo -e $sandbox_pavel > ~/.ssh/sandbox_pavel
+  - echo -e "Host *\\n\tStrictHostKeyChecking no\\n" > ~/.ssh/config
+  - echo -e $sandbox > ~/.ssh/sandbox
   - chmod 600 ~/.ssh/*
   - chmod 644 ~/.ssh/config
   - eval `ssh-agent -s`
-  - ssh-add ~/.ssh/sandbox_pavel
+  - ssh-add ~/.ssh/sandbox
 
 script:
   - ls -al ~/.ssh
