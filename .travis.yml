@@ -1,6 +1,11 @@
 sudo: required
 services:
   - docker
+branches:
+  only:
+    - master
+    - /rc-.*/
+
 
 before_install:
   - docker build -t xxdpavelxx/docker-react -f Dockerfile.dev .
