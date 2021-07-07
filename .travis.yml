@@ -7,22 +7,15 @@ branches:
     - /rc-.*/
 
 
-before_install:
-  - docker build -t xxdpavelxx/docker-react -f Dockerfile.dev .
+before_script:
+  - echo -e "Host *\\n\tStrictHostKeyChecking no\\n" > ~/.ssh/config
+  - echo -e $sandbox > ~/.ssh/sandbox
+  - chmod 600 ~/.ssh/*
+  - chmod 644 ~/.ssh/config
+  - eval `ssh-agent -s`
+  - ssh-add ~/.ssh/sandbox
 
 script:
-  - docker run xxdpavelxx/docker-react npm run test -- --coverage
-
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-1"
-  name: "docker-react"
-  env: "DockerReact-env"
-  bucket-name: "elasticbeanstalk-us-east-1-521080567810"
-  bucket_path: "docker-react"
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: "$AWS_SECRET_KEY"
+  - ls -al ~/.ssh
+  - echo test
   
